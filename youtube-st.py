@@ -255,6 +255,12 @@ if st.sidebar.button('Submit'):
         
     if selectbox is 'Save data':
         m_data = mycol.find_one({"Channel_Data.Channel_Id":c_id})
+        mydb_sql= mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12345",
+            database="youtube_new"
+            )
         mycursor = mydb_sql.cursor()
         mycursor.execute("create database if not exists youtube_new")
         
@@ -273,13 +279,15 @@ if st.sidebar.button('Submit'):
         if m_data is not None:
             value1 = tuple(m_data['Channel_Data'].values())
             mycursor.execute(query1,value1)
-            mydb.commit()
+            mydb_sql.commit()
             for i in range(len(m_data['Comment_Data'])):
                 value2 = tuple(m_data['Comment_Data'][i].values())
                 mycursor.execute(query2,value2)
-                mydb.commit()
+                mydb_sql.commit()
             for i in range(len(m_data['Video_Data'])):
                 value3 = tuple(m_data['Video_Data'][i].values())
                 mycursor.execute(query3,value3)
-                mydb.commit()
-        st.success("Data inserted in MySQL")
+                mydb_sql.commit()
+            st.success("Data inserted in MySQL")
+        else:
+            st.success("Data not found in MongoDB")
