@@ -4,7 +4,7 @@ import pymongo
 import mysql.connector
 import pandas as pd
 
-api_key= "AIzaSyAmkWuW86vNA2DAMaHRrNYdiIinppZjzzA"
+api_key= "*****************************"
 api_service_name = "youtube"
 api_version = "v3"
 youtube = build(api_service_name, api_version, developerKey = api_key)
@@ -16,7 +16,7 @@ mycol = mydb_mongo["Channel_Data_1"]
 mydb_sql= mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12345",
+            password="*****",
             database="youtube_new"
             )
 
@@ -258,7 +258,7 @@ if st.sidebar.button('Submit'):
         mydb_sql= mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12345",
+            password="*****",
             database="youtube_new"
             )
         mycursor = mydb_sql.cursor()
